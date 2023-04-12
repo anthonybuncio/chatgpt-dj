@@ -8,7 +8,7 @@ export default function Browse() {
   return (
     <>
       <main className="flex min-h-full flex-row items-start justify-start">
-        <div className=" h-full">
+        <div className="">
           <Menu />
         </div>
         <div className="w-full">
