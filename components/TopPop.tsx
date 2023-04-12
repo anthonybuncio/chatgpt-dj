@@ -2,21 +2,21 @@ import fetcher from "@/lib/fetcher";
 import useSWR from "swr";
 import ArtistButton from "./ArtistButton";
 
-const PopularArtists = () => {
-  const { data: playlistData } = useSWR("/api/playlists/top-rap", fetcher);
+const TopPop = () => {
+  const { data: topChartsData } = useSWR("/api/playlists/top-pop", fetcher);
 
-  console.log("playlist", playlistData);
+  console.log(topChartsData);
   let defaultTransform = 0;
   function goNext() {
     defaultTransform = defaultTransform - 398;
-    var slider = document.getElementById("top-rap-slider");
+    var slider = document.getElementById("top-pop-slider");
     if (Math.abs(defaultTransform) >= slider.scrollWidth / 1.7)
       defaultTransform = 0;
     slider.style.transform = "translateX(" + defaultTransform + "px)";
   }
 
   function goPrev() {
-    var slider = document.getElementById("top-rap-slider");
+    var slider = document.getElementById("top-pop-slider");
     if (Math.abs(defaultTransform) === 0) defaultTransform = 0;
     else defaultTransform = defaultTransform + 398;
     slider.style.transform = "translateX(" + defaultTransform + "px)";
@@ -25,7 +25,7 @@ const PopularArtists = () => {
     <section>
       <div className="container p-4 mx-auto">
         <div className="text-lg font-bold dark:text-gray-900">
-          <h1>Top Rap Songs</h1>
+          <h1>Top Pop Songs</h1>
         </div>
 
         <div className="flex items-center justify-center w-full h-full py-24 sm:py-2 px-4">
@@ -57,11 +57,11 @@ const PopularArtists = () => {
 
             <div className="w-full h-full mx-auto overflow-x-hidden overflow-y-hidden">
               <div
-                id="top-rap-slider"
+                id="top-pop-slider"
                 className="h-full flex lg:gap-8 md:gap-6 gap-14 items-center justify-start transition ease-out duration-700"
               >
-                {playlistData &&
-                  playlistData.map((artist, index: number) => (
+                {topChartsData &&
+                  topChartsData.map((artist, index: number) => (
                     <ArtistButton
                       key={index}
                       id={index}
@@ -103,4 +103,4 @@ const PopularArtists = () => {
   );
 };
 
-export default PopularArtists;
+export default TopPop;

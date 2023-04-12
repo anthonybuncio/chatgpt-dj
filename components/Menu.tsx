@@ -3,12 +3,12 @@ import Link from "next/link";
 const Menu = () => {
   return (
     <aside className="flex flex-col w-64 h-screen px-5 py-8 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700">
-      <a href="#">
+      <Link href="/">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="icon icon-tabler icon-tabler-brand-spotify w-auto h-auto"
-          width="36"
-          height="36"
+          className="icon icon-tabler icon-tabler-brand-spotify w-auto h-auto text-[#1ED760]"
+          width="54"
+          height="54"
           viewBox="0 0 24 24"
           strokeWidth="1.5"
           stroke="currentColor"
@@ -22,7 +22,7 @@ const Menu = () => {
           <path d="M9 15c1.5 -1 4 -1 5 .5"></path>
           <path d="M7 9c2 -1 6 -2 10 .5"></path>
         </svg>
-      </a>
+      </Link>
 
       <div className="flex flex-col justify-between flex-1 mt-6">
         <nav className="-mx-3 space-y-6 ">
@@ -33,24 +33,26 @@ const Menu = () => {
 
             <Link
               className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
-              href="/"
+              href="/generator"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                fill="none"
+                className="icon icon-tabler icon-tabler-wand w-5 h-5"
                 viewBox="0 0 24 24"
-                strokeWidth="1.5"
+                stroke-width="2"
                 stroke="currentColor"
-                className="w-5 h-5"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
-                />
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M6 21l15 -15l-3 -3l-15 15l3 3"></path>
+                <path d="M15 6l3 3"></path>
+                <path d="M9 3a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2"></path>
+                <path d="M19 13a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2"></path>
               </svg>
 
-              <span className="mx-2 text-sm font-medium">Home</span>
+              <span className="mx-2 text-sm font-medium">Generator</span>
             </Link>
 
             <Link
@@ -172,7 +174,7 @@ const Menu = () => {
 
           <div className="space-y-3 ">
             <label className="px-3 text-xs text-gray-500 uppercase dark:text-gray-400">
-              Customization
+              Account
             </label>
 
             <a

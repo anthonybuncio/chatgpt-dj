@@ -1,27 +1,25 @@
 
-import { query } from '@/lib/chatgpt';
+import { openai } from '@/lib/chatgpt';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-type Data = {
-	answer: string;
-};
 
 export default async function handler(
 	req: NextApiRequest,
-	res: NextApiResponse<Data>
+	res: NextApiResponse
 ) {
 	const { prompt } = req.body;
 
-	if (!prompt) {
-		res.status(400).json({ answer: "Please provide a prompt!" });
-		return;
-	}
+	const completion = await openai
+		.createCompletion({
+			model: "text-davinci-003",
+			prompt: prompt,
+			temperature: 0.9,
+			max_tokens: 1000,
+		});
 
-	const response = await query(prompt);
+	console.log("backend response", completion.data.choices[0].text);
 
-	const message = {
-		text: response
-	};
+	const chatgptMessage = completion.data.choices[0].text;
 
-	res.status(200).json({ answer: message.text });
+	res.status(200).json({ text: chatgptMessage });
 }
