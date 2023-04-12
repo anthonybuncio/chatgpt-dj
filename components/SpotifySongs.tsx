@@ -25,7 +25,7 @@ const SpotifySongs = () => {
   return (
     <section>
       <div className="container py-4 mx-auto">
-        <div className="font-bold dark:text-gray-900">
+        <div className="text-lg font-bold dark:text-gray-900">
           <h1>Most Played Songs</h1>
         </div>
 
@@ -102,28 +102,6 @@ const SpotifySongs = () => {
       </div>
     </section>
   );
-
-  // return (
-  //   <section>
-  //     <div className="container px-6 py-10 mx-auto">
-  //       <div className="font-bold">
-  //         <h1>Recently Played</h1>
-  //       </div>
-  //       <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-12 sm:grid-cols-2 xl:grid-cols-4 lg:grid-cols-3">
-  //         {songs &&
-  //           songs.map((song, index: number) => (
-  //             <ArtistButton
-  //               key={index}
-  //               id={index}
-  //               name={song.artist!}
-  //               coverImage={song.coverImage.url}
-  //               title={song.title}
-  //             />
-  //           ))}
-  //       </div>
-  //     </div>
-  //   </section>
-  // );
 };
 
 export default SpotifySongs;

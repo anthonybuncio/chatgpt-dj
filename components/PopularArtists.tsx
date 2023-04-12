@@ -23,9 +23,9 @@ const PopularArtists = () => {
   }
   return (
     <section>
-      <div className="container py-4 mx-auto">
-        <div className="font-bold dark:text-gray-900">
-          <h1>Popular Artists</h1>
+      <div className="container p-4 mx-auto">
+        <div className="text-lg font-bold dark:text-gray-900">
+          <h1>Popular Songs</h1>
         </div>
 
         <div className="flex items-center justify-center w-full h-full py-24 sm:py-8 px-4">

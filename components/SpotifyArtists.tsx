@@ -25,7 +25,7 @@ const SpotifyArtists = () => {
   return (
     <section>
       <div className="container py-4 mx-auto">
-        <div className=" flex flex-row justify-between items-center font-bold dark:text-gray-900">
+        <div className="text-lg font-bold dark:text-gray-900">
           <h1>Top Spotify Artists</h1>
         </div>
 
