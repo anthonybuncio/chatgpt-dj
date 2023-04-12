@@ -10,7 +10,7 @@ export default function Home() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const input = `
-    I want you to act as a song recommender. I will provide you with a list of up to 5 songs and you will create a playlist of 20 songs that are similar to the given songs. And you will provide a playlist name and description for the playlist. Do not choose songs that are same name or artist. Do not write any explanations or other words, just reply with the playlist name, description and the songs. The songs are:
+    I want you to act as a song recommender. I will provide you with a list of up to 5 songs and you will create a playlist of 10 songs that are similar to the given songs. And you will provide a playlist name and description for the playlist. Do not choose songs that are same name or artist. Do not write any explanations or other words, just reply with the playlist name, description and the songs. The songs are:
 
     1. Drake - Fire & Desire
     `;
@@ -21,7 +21,7 @@ export default function Home() {
   };
 
   const processMessage = async (formPrompt: string) => {
-    await fetch("/api/create-playlist", {
+    const data = await fetch("/api/create-playlist", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -29,10 +29,10 @@ export default function Home() {
       body: JSON.stringify({
         prompt: formPrompt,
       }),
-    }).then((data) => {
-      console.log("response", data);
-      return data;
     });
+
+    console.log("RESPONSEEEEE", data);
+    return data;
   };
 
   return (
@@ -60,15 +60,15 @@ export default function Home() {
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
-                        stroke-width="1.5"
+                        strokeWidth="1.5"
                         stroke="currentColor"
                         className="icon icon-tabler icon-tabler-mail"
                         width={18}
                         height={18}
                       >
                         <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                           d="M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 01-.99-3.467l2.31-.66A2.25 2.25 0 009 15.553z"
                         />
                       </svg>
@@ -96,15 +96,15 @@ export default function Home() {
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
-                        stroke-width="1.5"
+                        strokeWidth="1.5"
                         stroke="currentColor"
                         className="icon icon-tabler icon-tabler-mail"
                         width={18}
                         height={18}
                       >
                         <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                           d="M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 01-.99-3.467l2.31-.66A2.25 2.25 0 009 15.553z"
                         />
                       </svg>
@@ -132,15 +132,15 @@ export default function Home() {
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
-                        stroke-width="1.5"
+                        strokeWidth="1.5"
                         stroke="currentColor"
                         className="icon icon-tabler icon-tabler-mail"
                         width={18}
                         height={18}
                       >
                         <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                           d="M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 01-.99-3.467l2.31-.66A2.25 2.25 0 009 15.553z"
                         />
                       </svg>
