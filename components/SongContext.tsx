@@ -1,5 +1,7 @@
 import { createContext, useCallback, useContext, useReducer } from "react";
 
+//DOESNT WORKKKKKKK
+
 type ActionType =
   | { type: "ADD"; text: string }
   | { type: "REMOVE"; id: number };

@@ -1,9 +1,7 @@
 import Menu from "@/components/Menu";
 import Nav from "@/components/Nav";
-import PopularArtists from "@/components/PopularArtists";
-import SpotifyArtists from "@/components/SpotifyArtists";
-import SpotifySongs from "@/components/SpotifySongs";
-import Head from "next/head";
+import SpotifyArtists from "@/components/Lists/SpotifyArtists";
+import SpotifySongs from "@/components/Lists/SpotifySongs";
 
 const MyMusic = () => {
   return (

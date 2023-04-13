@@ -1,4 +1,4 @@
-import Browse from "@/components/SpotifyArtists";
+import Browse from "@/components/Lists/SpotifyArtists";
 import Menu from "@/components/Menu";
 import Nav from "@/components/Nav";
 import Head from "next/head";

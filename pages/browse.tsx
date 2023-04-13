@@ -1,8 +1,8 @@
 import Menu from "@/components/Menu";
 import Nav from "@/components/Nav";
-import PopularArtists from "@/components/PopularArtists";
-import TopCharts from "@/components/TopCharts";
-import TopPop from "@/components/TopPop";
+import TopCharts from "@/components/Lists/TopCharts";
+import TopPop from "@/components/Lists/TopPop";
+import TopRap from "@/components/Lists/TopRap";
 
 export default function Browse() {
   return (
@@ -14,7 +14,7 @@ export default function Browse() {
         <div className="w-full">
           <Nav />
           <TopCharts />
-          <PopularArtists />
+          <TopRap />
           <TopPop />
         </div>
       </main>
