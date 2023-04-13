@@ -18,7 +18,7 @@ const AiPlaylist = () => {
     ],
   };
 
-  function trackData(song) {
+  function trackData(song, i) {
     return (
       // <div className="flex border-b py-3  hover:shadow-md px-2 ">
       //   <div className="flex flex-col px-2 w-full">
@@ -30,7 +30,10 @@ const AiPlaylist = () => {
       //     </span>
       //   </div>
       // </div>
-      <div className="flex flex-col border-b p-2 w-full hover:shadow-md cursor-pointer">
+      <div
+        key={i}
+        className="flex flex-col border-b p-2 w-full hover:shadow-md cursor-pointer"
+      >
         <span className="text-sm text-red-500 capitalize font-semibold pt-1">
           {song.title}
         </span>
@@ -73,7 +76,7 @@ const AiPlaylist = () => {
               />
             </div> */}
 
-            {playlistData.songs.map((song) => trackData(song))}
+            {playlistData.songs.map((song, i) => trackData(song, i))}
           </div>
         </div>
       </div>

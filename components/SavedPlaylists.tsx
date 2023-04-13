@@ -20,7 +20,7 @@ const SavedPlaylists = () => {
     },
   ];
 
-  function playlistButton(data) {
+  function playlistButton(data, i) {
     return (
       // <div className="w-1/3 rounded-xl bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 m-4 p-0.5 shadow-xl transition hover:animate-background hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s]">
       //   <div className="rounded-[10px] bg-white p-4 !pt-10 sm:p-6">
@@ -33,7 +33,10 @@ const SavedPlaylists = () => {
       //     </span>
       //   </div>
       // </div>
-      <div className="w-1/2 rounded-2xl bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-1 shadow-xl">
+      <div
+        key={i}
+        className="w-1/2 rounded-2xl bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-1 shadow-xl"
+      >
         <a className="block rounded-xl bg-white p-4 sm:p-6 lg:p-8" href="">
           <div className="mt-16 ">
             <h3 className="text-lg font-bold text-gray-900 sm:text-xl">
@@ -56,7 +59,7 @@ const SavedPlaylists = () => {
             My Playlists
           </span>
           <div className="flex flex-row flex-wrap w-full justify-center">
-            {playlistData.map((data) => playlistButton(data))}
+            {playlistData.map((data, i) => playlistButton(data, i))}
           </div>
         </div>
       </div>
