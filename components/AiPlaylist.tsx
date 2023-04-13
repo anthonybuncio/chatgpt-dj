@@ -20,21 +20,11 @@ const AiPlaylist = () => {
 
   function trackData(song, i) {
     return (
-      // <div className="flex border-b py-3  hover:shadow-md px-2 ">
-      //   <div className="flex flex-col px-2 w-full">
-      //     <span className="text-sm text-red-500 capitalize font-semibold pt-1">
-      //       {song.song_title}
-      //     </span>
-      //     <span className="text-xs text-gray-500 uppercase font-medium ">
-      //       {song.artist}
-      //     </span>
-      //   </div>
-      // </div>
       <div
         key={i}
-        className="flex flex-col border-b p-2 w-full hover:shadow-md cursor-pointer"
+        className="flex flex-col border-b border-gray-400 p-2 w-full hover:shadow-md cursor-pointer"
       >
-        <span className="text-sm text-red-500 capitalize font-semibold pt-1">
+        <span className="text-sm text-black capitalize font-semibold pt-1">
           {song.title}
         </span>
         <span className="text-xs text-gray-500 uppercase font-medium ">
@@ -44,10 +34,10 @@ const AiPlaylist = () => {
     );
   }
   return (
-    <div className="w-2/5 max-h-screen p-8 border border-indigo-600">
-      <div className="flex w-8/12 bg-white shadow-md rounded-lg overflow-hidden mx-auto">
+    <div className="w-2/5 max-h-screen p-8">
+      <div className="flex w-8/12 shadow-md rounded-lg overflow-hidden mx-auto border border-gray-100">
         <div className="flex flex-col w-full">
-          <div className="flex p-4 border-b">
+          <div className="flex p-4 border-b border-gray-400">
             <div className="w-20 h-20 text-5xl flex justify-center items-center">
               {playlistData.playlist_cover_art}
             </div>

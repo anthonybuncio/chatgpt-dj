@@ -2,9 +2,12 @@ import AiPlaylist from "@/components/AiPlaylist";
 import Menu from "@/components/Menu";
 import Nav from "@/components/Nav";
 import SavedPlaylists from "@/components/SavedPlaylists";
-import { useState } from "react";
+import SongContext from "@/components/SongProvider";
+import { useContext, useState } from "react";
 
 export default function Generator() {
+  const { songInput, setSongInput } = useContext(SongContext);
+
   const [songOne, setSongOne] = useState("");
   const [songTwo, setSongTwo] = useState("");
   const [songThree, setSongThree] = useState("");
@@ -44,6 +47,7 @@ export default function Generator() {
     }
   };
 
+  console.log("gen page context", songInput);
   return (
     <>
       <main className="flex min-h-screen flex-row items-start justify-start">
@@ -53,11 +57,7 @@ export default function Generator() {
         <div className="w-full">
           <Nav />
           <div className="flex min-h-screen flex-row items-start justify-between">
-            <form
-              id="login"
-              onSubmit={handleSubmit}
-              className="border border-indigo-600 w-1/5"
-            >
+            <form id="login" onSubmit={handleSubmit} className="w-1/5">
               <div className="flex flex-col items-center justify-center p-4">
                 <div className="flex md:flex-col flex-col items-center py-8 px-4">
                   {/* Code block starts */}
