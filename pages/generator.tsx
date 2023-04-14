@@ -13,7 +13,7 @@ export default function Generator() {
         </div>
         <div className="w-full">
           <Nav />
-          <div className="flex flex-row items-start justify-stretch border border-blue-500">
+          <div className="flex flex-row ">
             <SongForm />
             <AiPlaylist />
             <SavedPlaylists />

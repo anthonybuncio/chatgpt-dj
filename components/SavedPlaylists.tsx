@@ -74,7 +74,7 @@ const SavedPlaylists = () => {
   return (
     <div className="w-1/3 p-8">
       <div className="flex w-full overflow-hidden mx-auto">
-        <div className="flex flex-col w-full\">
+        <div className="flex flex-col w-full">
           <span className="text-center uppercase text-xl text-black font-medium">
             My Playlists
           </span>

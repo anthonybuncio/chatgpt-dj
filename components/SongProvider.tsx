@@ -7,7 +7,7 @@ interface Song {
 
 const SongContext = createContext<{
   songInput?: Song[];
-  setSongInput?: (songInput?: Song[]) => void;
+  updateSong?: (inputValue?: string, elementId?: string) => void;
 }>({});
 
 export const SongProvider = ({ children }) => {
@@ -19,8 +19,19 @@ export const SongProvider = ({ children }) => {
     { id: 5, text: "" },
   ]);
 
+  const updateSong = (inputValue: string, elementId: string) => {
+    songInput.filter((song: Song) => {
+      console.log(song);
+      const idStr = song.id.toString();
+      if (idStr === elementId) {
+        song.text = inputValue;
+        setSongInput([...songInput]);
+      }
+    });
+  };
+
   return (
-    <SongContext.Provider value={{ songInput, setSongInput }}>
+    <SongContext.Provider value={{ songInput, updateSong }}>
       {children}
     </SongContext.Provider>
   );

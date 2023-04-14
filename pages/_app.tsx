@@ -12,7 +12,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <title>PLAY-i 🎧AI Generated Playlists</title>
         <link rel="icon" href="favicon.ico" />
       </Head>
-      <div className="bg-gradient-to-t from-purple-200 via-gray-200 to-orange-200">
+      <div className="bg-gradient-to-l from-orange-300 to-rose-300">
         <SongProvider>
           <Component {...pageProps} />
         </SongProvider>
