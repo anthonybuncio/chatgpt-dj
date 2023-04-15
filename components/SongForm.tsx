@@ -66,7 +66,7 @@ const SongForm = () => {
   console.log("song form context", songInput);
   return (
     <div className="w-1/3 max-h-screen p-8 ">
-      <div className="flex w-8/12 shadow-md rounded-lg overflow-hidden mx-auto border border-gray-100">
+      <div className="flex w-8/12 shadow-md rounded-lg overflow-hidden mx-auto border-2 border-gray-100">
         <form id="login" onSubmit={handleSubmit}>
           <div className="flex flex-col items-center justify-center p-4 shadow-md rounded-lg overflow-hidden mx-auto">
             <span className="text-center uppercase text-xl text-black font-medium">

@@ -53,7 +53,7 @@ const SavedPlaylists = () => {
     return (
       <button
         key={i}
-        className="relative flex items-start justify-between rounded-xl border border-gray-100 p-2 shadow-xl sm:p-4 lg:px-6 lg:py-4"
+        className="relative flex items-start justify-between rounded-xl border-2 border-gray-100 p-2 shadow-xl sm:p-4 lg:px-6 lg:py-4"
       >
         <div className="text-gray-500 text-left">
           <div className="h-8 w-8 sm:h-10 sm:w-10 text-3xl">

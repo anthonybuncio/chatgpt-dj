@@ -35,7 +35,7 @@ const AiPlaylist = () => {
   }
   return (
     <div className="w-1/3 max-h-screen p-8 ">
-      <div className="flex w-5/6 shadow-md rounded-lg overflow-hidden mx-auto border border-gray-100">
+      <div className="flex w-5/6 shadow-md rounded-lg overflow-hidden mx-auto border-2 border-gray-100">
         <div className="flex flex-col w-full">
           <div className="flex p-4 border-b border-gray-100">
             <div className="w-20 h-20 text-5xl flex justify-center items-center">
