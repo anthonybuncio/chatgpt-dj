@@ -7,7 +7,7 @@ import TopRap from "@/components/Lists/TopRap";
 export default function Browse() {
   return (
     <>
-      <main className="flex min-h-full flex-row items-start justify-start">
+      <div className="flex min-h-full flex-row items-start justify-start">
         <div className="">
           <Menu />
         </div>
@@ -17,7 +17,7 @@ export default function Browse() {
           <TopRap />
           <TopPop />
         </div>
-      </main>
+      </div>
     </>
   );
 }

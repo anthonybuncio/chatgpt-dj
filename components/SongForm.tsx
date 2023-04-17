@@ -65,14 +65,14 @@ const SongForm = () => {
   };
   console.log("song form context", songInput);
   return (
-    <div className="w-1/3 max-h-screen p-8 ">
-      <div className="flex w-8/12 shadow-md rounded-lg overflow-hidden mx-auto border-2 border-gray-100">
-        <form id="login" onSubmit={handleSubmit}>
-          <div className="flex flex-col items-center justify-center p-4 shadow-md rounded-lg overflow-hidden mx-auto">
-            <span className="text-center uppercase text-xl text-black font-medium">
+    <div className="w-1/3 max-h-screen py-8 border border-red-700">
+      <div className="flex w-full md:w-10/12 lg:w-8/12 shadow-md rounded-lg overflow-hidden mx-auto border-2 border-gray-100">
+        <div className="flex flex-col w-full items-center justify-center p-4 shadow-md rounded-lg overflow-hidden ">
+          <form id="login" onSubmit={handleSubmit}>
+            <span className="flex justify-center uppercase text-xl text-black font-medium">
               AI Playlist Generator
             </span>
-            <div className="flex md:flex-col flex-col items-center py-8 px-4">
+            <div className="flex md:flex-col flex-col items-center py-8">
               {songInput &&
                 songInput.map((input, i) => {
                   return (
@@ -104,18 +104,16 @@ const SongForm = () => {
                 })}
             </div>
             <div className="flex flex-col py-4">
-              <div className="">
-                <button
-                  // className="bg-red-500 focus:outline-none transition duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-8 py-2 text-sm"
-                  className="bg-red-500 focus:outline-none transition duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-8 py-2 text-sm font-normal flex items-center"
-                  type="submit"
-                >
-                  Create AI Playlist
-                </button>
-              </div>
+              <button
+                // className="bg-red-500 focus:outline-none transition duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-8 py-2 text-sm"
+                className="bg-red-500 focus:outline-none transition duration-150 ease-in-out rounded text-white px-8 py-2 text-sm font-normal"
+                type="submit"
+              >
+                Create AI Playlist
+              </button>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   );

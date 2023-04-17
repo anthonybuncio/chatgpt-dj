@@ -4,10 +4,10 @@ import Nav from "@/components/Nav";
 import SavedPlaylists from "@/components/SavedPlaylists";
 import SongForm from "@/components/SongForm";
 
-export default function Generator() {
+export default function Generator({}) {
   return (
     <>
-      <main className="flex min-h-screen flex-row items-start justify-start">
+      <div className="flex min-h-screen flex-row items-start justify-start">
         <div>
           <Menu />
         </div>
@@ -19,7 +19,7 @@ export default function Generator() {
             <SavedPlaylists />
           </div>
         </div>
-      </main>
+      </div>
     </>
   );
 }

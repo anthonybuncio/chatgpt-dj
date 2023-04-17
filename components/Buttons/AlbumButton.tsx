@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import SongContext from "./SongProvider";
+import SongContext from "../SongProvider";
 
 type ArtistProps = {
   artist: string;

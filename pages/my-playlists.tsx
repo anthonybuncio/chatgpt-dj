@@ -6,7 +6,7 @@ import SpotifySongs from "@/components/Lists/SpotifySongs";
 const MyPlaylists = () => {
   return (
     <>
-      <main className="flex min-h-screen flex-row items-start justify-start">
+      <div className="flex min-h-screen flex-row items-start justify-start">
         <div>
           <Menu />
         </div>
@@ -14,7 +14,7 @@ const MyPlaylists = () => {
           <Nav />
           <SpotifyArtists />
         </div>
-      </main>
+      </div>
     </>
   );
 };

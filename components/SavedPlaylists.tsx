@@ -47,34 +47,35 @@ const SavedPlaylists = () => {
         "Get your party started with these high-energy tracks that will keep you dancing all night long.",
       playlist_cover_art: "🎉",
     },
+    {
+      playlist_name: "🎧🔥 Party in the Club",
+      playlist_description: "Bumpin' beats for a night out",
+      playlist_cover_art: "🕺",
+    },
   ];
 
   function playlistButton(data, i) {
     return (
       <button
         key={i}
-        className="relative flex items-start justify-between rounded-xl border-2 border-gray-100 p-2 shadow-xl sm:p-4 lg:px-6 lg:py-4"
+        className=" text-black relative flex items-start justify-between rounded-xl border border-gray-100 p-2 shadow-xl sm:p-4 lg:px-6 lg:py-4"
       >
-        <div className="text-gray-500 text-left">
-          <div className="h-8 w-8 sm:h-10 sm:w-10 text-3xl">
-            {data.playlist_cover_art}
-          </div>
+        <div className=" text-left">
+          <div className="h-6 w-6 text-xl">{data.playlist_cover_art}</div>
 
-          <h3 className="mt-4 text-md font-light text-gray-900 sm:text-lg">
+          <h3 className="mt-4 text-md font-semibold sm:text-md">
             {data.playlist_name}
           </h3>
 
-          <p className=" hidden text-xs sm:block">
-            {data.playlist_description}
-          </p>
+          <p className="hidden text-xs sm:block">{data.playlist_description}</p>
         </div>
       </button>
     );
   }
   return (
     <div className="w-1/3 p-8">
-      <div className="flex w-full overflow-hidden mx-auto">
-        <div className="flex flex-col w-full">
+      <div className="flex w-full overflow-hidden mx-auto shadow-md rounded-lg border-2 border-gray-100">
+        <div className="flex flex-col w-full py-4">
           <span className="text-center uppercase text-xl text-black font-medium">
             My Playlists
           </span>

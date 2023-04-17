@@ -1,4 +1,4 @@
-import AlbumButton from "./AlbumButton";
+import AlbumButton from "./Buttons/AlbumButton";
 
 const AlbumCarousel = ({ data, title, slug }) => {
   console.log("NEW CAROUSEL", data, slug);

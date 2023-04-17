@@ -49,7 +49,7 @@ const AiPlaylist = () => {
               <span className="text-sm text-red-500 capitalize font-semibold pt-1">
                 {playlistData.playlist_name}
               </span>
-              <span className="text-xs text-gray-500 uppercase font-medium">
+              <span className="text-xs text-gray-900 uppercase font-medium">
                 {playlistData.playlist_description}
               </span>
             </div>

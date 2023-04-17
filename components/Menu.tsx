@@ -1,11 +1,16 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import fetcher from "@/lib/fetcher";
+import useSWR from "swr";
 
 const Menu = () => {
   const [active, setActive] = useState("");
   const router = useRouter();
 
+  const { data: user } = useSWR("/api/user", fetcher);
+
+  console.log("navigation component user data:", user);
   console.log(router);
   return (
     <aside className="flex flex-col w-64 h-screen px-5 py-8 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700">
@@ -92,11 +97,11 @@ const Menu = () => {
                 xmlns="http://www.w3.org/2000/svg"
                 className="icon icon-tabler icon-tabler-list-search w-5 h-5"
                 viewBox="0 0 24 24"
-                stroke-width="2"
+                strokeWidth="2"
                 stroke="currentColor"
                 fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               >
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                 <path d="M15 15m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
@@ -139,11 +144,11 @@ const Menu = () => {
                 xmlns="http://www.w3.org/2000/svg"
                 className="icon icon-tabler icon-tabler-playlist w-5 h-5"
                 viewBox="0 0 24 24"
-                stroke-width="2"
+                strokeWidth="2"
                 stroke="currentColor"
                 fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               >
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                 <path d="M14 17m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
@@ -164,7 +169,7 @@ const Menu = () => {
 
             <a
               className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
-              href="#"
+              href="/settings"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -190,6 +195,18 @@ const Menu = () => {
             </a>
           </div>
         </nav>
+        {user && (
+          <a href="#" className="flex items-center px-4 -mx-2">
+            <img
+              className="object-cover mx-2 rounded-full h-9 w-9"
+              src={user?.data?.images[0].url}
+              alt="avatar"
+            />
+            <span className="mx-2 font-medium text-gray-800 dark:text-gray-200">
+              {user.data.display_name}
+            </span>
+          </a>
+        )}
       </div>
     </aside>
   );
