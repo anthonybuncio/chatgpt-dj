@@ -90,12 +90,12 @@ const SongForm = () => {
                         <input
                           id={`${input.id}`}
                           className="text-gray-600 dark:text-gray-400 focus:outline-none focus:border focus:border-indigo-700 dark:focus:border-indigo-700 dark:border-gray-700 dark:bg-gray-800 bg-white font-normal w-64 h-10 flex items-center pl-16 text-sm border-gray-300 rounded border shadow"
-                          placeholder={
-                            input.text === "" ? `Song #${input.id}` : input.text
-                          }
+                          placeholder={`Song #${input.id}`}
+                          defaultValue={input.text}
                           onChange={(event) => {
                             console.log(event);
-                            updateSong(event.target.value, event.target.id);
+                            const idNumber = parseInt(event.target.id);
+                            updateSong(event.target.value, idNumber);
                           }}
                         />
                       </div>

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import SongContext from "../SongProvider";
 
 type ArtistProps = {
@@ -14,10 +14,19 @@ const AlbumButton = ({ artist, coverImage, title }: ArtistProps) => {
   const addToStore = (artist, title) => {
     const songString = `${artist} - ${title}`;
     console.log(songString);
+    const list = songInput.filter((song) => {
+      if (song.text === "") return song.id;
+    });
 
-    // songInput.map((songData) => {
-    //   if (songData.text === "") return songData;
-    // });
+    console.log(list);
+
+    if (list.length) {
+      updateSong(songString, list[0].id);
+    } else if (!list.length || list.length === 0) {
+      alert("Playlist is full. Please remove some items to continue.");
+    }
+
+    updateSong(songString, list[0].id);
   };
 
   return (
@@ -34,14 +43,13 @@ const AlbumButton = ({ artist, coverImage, title }: ArtistProps) => {
           className="object-cover object-center h-full w-full rounded-lg"
         />
       </div>
-      <div className="bg-opacity-30 w-32 h-full py-2 text-left truncate">
-        <div className="flex">
-          <span className="text-sm font-bold leading-5 lg:leading-6">
-            {artist}
-          </span>
-        </div>
+      <div className="flex flex-col bg-opacity-30 w-32 h-full py-2 text-left truncate">
+        <span className="text-sm font-semibold">{artist}</span>
+
         {title && (
-          <span className="text-xs leading-4 lg:leading-5">{title}</span>
+          <span className="text-xs font-medium text-gray-800 leading-4 lg:leading-5">
+            {title}
+          </span>
         )}
       </div>
     </div>

@@ -3,6 +3,8 @@ import Nav from "@/components/Nav";
 import TopCharts from "@/components/Lists/TopCharts";
 import TopPop from "@/components/Lists/TopPop";
 import TopRap from "@/components/Lists/TopRap";
+import SongContext from "@/components/SongProvider";
+import { useContext } from "react";
 
 export default function Browse() {
   return (
