@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import SongContext from "./SongProvider";
 
 const MusicIcon = () => {
@@ -24,12 +24,7 @@ const MusicIcon = () => {
 
 const SongForm = () => {
   const { songInput, updateSong } = useContext(SongContext);
-
-  const [songOne, setSongOne] = useState("");
-  const [songTwo, setSongTwo] = useState("");
-  const [songThree, setSongThree] = useState("");
-  const [songFour, setSongFour] = useState("");
-  const [songFive, setSongFive] = useState("");
+  const [inputArray, updateInputArray] = useState([]);
 
   const [aiResponse, setAiResponse] = useState();
 
@@ -37,13 +32,14 @@ const SongForm = () => {
     event.preventDefault();
 
     // Format the data before sending to chatGPT
-    console.log(songOne, songTwo, songThree);
 
-    if (songOne !== "") {
-      const input = `I want you to act as a song recommender. I will provide you with a song and you will create a playlist of 10 songs that are similar to the given song. And you will provide a playlist name, description, and cover art for the playlist. The cover art property should be a single emoji icon relating to the playlist or description. Do not choose songs that are same name or artist. Do not write any explanations or other words, just reply in JSON format with the playlist name (playlist_name), description (playlist_description), cover art (playlist_cover_art), and the songs (songs). The songs should be an object with artist (artist) and song title (title). The keys in each object should NOT be strings. My first song is "${songOne}".`;
+    console.log(inputArray);
 
-      await processMessage(input);
-    }
+    // if (songOne !== "") {
+    //   const input = `I want you to act as a song recommender. I will provide you with a song and you will create a playlist of 10 songs that are similar to the given song. And you will provide a playlist name, description, and cover art for the playlist. The cover art property should be a single emoji icon relating to the playlist or description. Do not choose songs that are same name or artist. Do not write any explanations or other words, just reply in JSON format with the playlist name (playlist_name), description (playlist_description), cover art (playlist_cover_art), and the songs (songs). The songs should be an object with artist (artist) and song title (title). The keys in each object should NOT be strings. My first song is "${songOne}".`;
+
+    //   await processMessage(input);
+    // }
   };
 
   const processMessage = async (formPrompt: string) => {
@@ -63,10 +59,11 @@ const SongForm = () => {
     //   setAiResponse(data.text);
     // }
   };
+
   console.log("song form context", songInput);
   return (
-    <div className="w-1/3 max-h-screen py-8 border border-red-700">
-      <div className="flex w-full md:w-10/12 lg:w-8/12 shadow-md rounded-lg overflow-hidden mx-auto border-2 border-gray-100">
+    <div className="w-1/3 max-h-screen py-8 ">
+      <div className="flex w-5/6 shadow-md rounded-lg overflow-hidden mx-auto border-2 border-gray-100">
         <div className="flex flex-col w-full items-center justify-center p-4 shadow-md rounded-lg overflow-hidden ">
           <form id="login" onSubmit={handleSubmit}>
             <span className="flex justify-center uppercase text-xl text-black font-medium">
@@ -84,12 +81,17 @@ const SongForm = () => {
                         Song #{input.id}
                       </label>
                       <div className="relative">
-                        <div className="absolute text-white flex items-center px-4 border-r dark:border-gray-700 h-full bg-red-500 dark:bg-indigo-600 rounded-l cursor-pointer">
+                        <div
+                          onClick={() =>
+                            console.log("remove from list", input.id)
+                          }
+                          className="absolute text-white flex items-center px-4 border-r dark:border-gray-700 h-full bg-red-500 dark:bg-indigo-600 rounded-l cursor-pointer"
+                        >
                           <MusicIcon />
                         </div>
                         <input
                           id={`${input.id}`}
-                          className="text-gray-600 dark:text-gray-400 focus:outline-none focus:border focus:border-indigo-700 dark:focus:border-indigo-700 dark:border-gray-700 dark:bg-gray-800 bg-white font-normal w-64 h-10 flex items-center pl-16 text-sm border-gray-300 rounded border shadow"
+                          className="text-gray-600 dark:text-gray-400 focus:outline-none focus:border focus:border-indigo-700 dark:focus:border-indigo-700 dark:border-gray-700 dark:bg-gray-800 bg-white font-normal w-64 h-10 flex items-center pl-14 text-md border-gray-300 rounded border shadow"
                           placeholder={`Song #${input.id}`}
                           defaultValue={input.text}
                           onChange={(event) => {

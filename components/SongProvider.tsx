@@ -8,6 +8,7 @@ interface Song {
 const SongContext = createContext<{
   songInput?: Song[];
   updateSong?: (inputValue?: string, elementId?: number) => void;
+  removeSong?: (elementId?: number) => null;
 }>({});
 
 export const SongProvider = ({ children }) => {
@@ -21,10 +22,19 @@ export const SongProvider = ({ children }) => {
 
   const updateSong = (inputValue: string, elementId: number) => {
     songInput.filter((song: Song) => {
-      console.log(song);
       const idStr = song.id;
       if (idStr === elementId) {
         song.text = inputValue;
+        setSongInput([...songInput]);
+      }
+    });
+  };
+
+  const removeSong = (elementId: number) => {
+    songInput.filter((song: Song) => {
+      const idStr = song.id;
+      if (idStr === elementId) {
+        song.text = "";
         setSongInput([...songInput]);
       }
     });

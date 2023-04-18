@@ -25,8 +25,6 @@ const AlbumButton = ({ artist, coverImage, title }: ArtistProps) => {
     } else if (!list.length || list.length === 0) {
       alert("Playlist is full. Please remove some items to continue.");
     }
-
-    updateSong(songString, list[0].id);
   };
 
   return (
