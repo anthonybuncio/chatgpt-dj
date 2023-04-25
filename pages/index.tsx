@@ -102,6 +102,7 @@ export default function Landing() {
   const [inputGenre, setInputGenre] = useState(null);
   const [inputYear, setInputYear] = useState(null);
   const [inputType, setInputType] = useState(null);
+  const [openAiKey, setOpenAiKey] = useState(null);
 
   const [gptResponse, setGptResponse] = useState({});
 
@@ -124,8 +125,18 @@ export default function Landing() {
       year: inputYear,
       type: inputType,
     };
-    console.log("send form with this info: ", input);
-    await processMessage(input);
+    const key = openAiKey;
+    console.log("send form with this info: ", input, key);
+
+    // if (
+    //   inputGenre === null ||
+    //   inputYear === null ||
+    //   inputType === null ||
+    //   openAiKey === null
+    // ) {
+    //   alert("missing input");
+    // }
+    // await processMessage(input);
   };
 
   const processMessage = async (formPrompt) => {
@@ -151,14 +162,14 @@ export default function Landing() {
     <>
       <div className="flex min-h-screen flex-col items-center justify-start">
         <div className=" flex flex-row w-full h-full justify-center">
-          <div className=" flex flex-col items-center ">
+          <div className=" flex flex-col items-center w-1/4">
             <img className="w-24 h-24" src="logo.png" alt="Workflow" />
-            <span className="p-4 uppercase font-extrabold">
+            <span className="mb-8 uppercase text-xl font-extrabold">
               Playlist Generator
             </span>
             <form onSubmit={handleForm}>
-              <span className="py-2 text-sm font-semibold">
-                API KEY:
+              <span className="py-2 text-med font-semibold">
+                OpenAI API Key:
                 <span className=" text-rose-500 text-xs px-2 uppercase">
                   <Link href="https://platform.openai.com/signup">
                     Get Yours Here
@@ -170,11 +181,14 @@ export default function Landing() {
                 <input
                   type="text"
                   placeholder="OpenAI API KEY"
-                  className="mb-8 flex items-center justify-center gap-2 rounded-md border border-gray-100 p-2 text-gray-900 outline-none"
+                  className="mb-8 flex items-center justify-center gap-2 rounded-md border border-gray-100 p-2 text-gray-900 outline-none w-1/2"
+                  onChange={(e) => {
+                    setOpenAiKey(e.target.value);
+                  }}
                 />
               </div>
 
-              <span className="py-2 text-sm font-semibold">Genre: </span>
+              <span className="py-2 text-med font-semibold">Genre: </span>
               <fieldset className="flex flex-wrap gap-3 mb-4">
                 <legend className="sr-only">Genre</legend>
 
@@ -301,9 +315,192 @@ export default function Landing() {
                     <p className="text-sm font-medium">Country</p>
                   </label>
                 </div>
+
+                <div>
+                  <input
+                    type="radio"
+                    name="GenreOption"
+                    value="latin"
+                    id="GenreLatin"
+                    className="peer hidden [&:checked_+_label_svg]:block"
+                    onClick={handleGenreSelect}
+                  />
+
+                  <label
+                    htmlFor="GenreLatin"
+                    className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-rose-400 peer-checked:bg-rose-400 peer-checked:text-white"
+                  >
+                    <svg
+                      className="hidden h-5 w-5"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+
+                    <p className="text-sm font-medium">Latin</p>
+                  </label>
+                </div>
+                <div>
+                  <input
+                    type="radio"
+                    name="GenreOption"
+                    value="rock"
+                    id="GenreRock"
+                    className="peer hidden [&:checked_+_label_svg]:block"
+                    onClick={handleGenreSelect}
+                  />
+
+                  <label
+                    htmlFor="GenreRock"
+                    className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-rose-400 peer-checked:bg-rose-400 peer-checked:text-white"
+                  >
+                    <svg
+                      className="hidden h-5 w-5"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+
+                    <p className="text-sm font-medium">Rock</p>
+                  </label>
+                </div>
+
+                <div>
+                  <input
+                    type="radio"
+                    name="GenreOption"
+                    value="indie"
+                    id="GenreIndie"
+                    className="peer hidden [&:checked_+_label_svg]:block"
+                    onClick={handleGenreSelect}
+                  />
+
+                  <label
+                    htmlFor="GenreIndie"
+                    className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-rose-400 peer-checked:bg-rose-400 peer-checked:text-white"
+                  >
+                    <svg
+                      className="hidden h-5 w-5"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+
+                    <p className="text-sm font-medium">Indie</p>
+                  </label>
+                </div>
+
+                <div>
+                  <input
+                    type="radio"
+                    name="GenreOption"
+                    value="dance/electronic"
+                    id="GenreDance"
+                    className="peer hidden [&:checked_+_label_svg]:block"
+                    onClick={handleGenreSelect}
+                  />
+
+                  <label
+                    htmlFor="GenreDance"
+                    className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-rose-400 peer-checked:bg-rose-400 peer-checked:text-white"
+                  >
+                    <svg
+                      className="hidden h-5 w-5"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+
+                    <p className="text-sm font-medium">Electronic</p>
+                  </label>
+                </div>
+                <div>
+                  <input
+                    type="radio"
+                    name="GenreOption"
+                    value="jazz"
+                    id="GenreJazz"
+                    className="peer hidden [&:checked_+_label_svg]:block"
+                    onClick={handleGenreSelect}
+                  />
+
+                  <label
+                    htmlFor="GenreJazz"
+                    className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-rose-400 peer-checked:bg-rose-400 peer-checked:text-white"
+                  >
+                    <svg
+                      className="hidden h-5 w-5"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+
+                    <p className="text-sm font-medium">Jazz</p>
+                  </label>
+                </div>
+                <div>
+                  <input
+                    type="radio"
+                    name="GenreOption"
+                    value="metal"
+                    id="GenreMetal"
+                    className="peer hidden [&:checked_+_label_svg]:block"
+                    onClick={handleGenreSelect}
+                  />
+
+                  <label
+                    htmlFor="GenreMetal"
+                    className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-rose-400 peer-checked:bg-rose-400 peer-checked:text-white"
+                  >
+                    <svg
+                      className="hidden h-5 w-5"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+
+                    <p className="text-sm font-medium">Metal</p>
+                  </label>
+                </div>
               </fieldset>
 
-              <span className="py-2 text-sm font-semibold">Year: </span>
+              <span className="py-2 text-med font-semibold">Year: </span>
               <fieldset className="flex flex-wrap gap-3 mb-4">
                 <legend className="sr-only">Year</legend>
 
@@ -430,12 +627,194 @@ export default function Landing() {
                     <p className="text-sm font-medium">2017</p>
                   </label>
                 </div>
+
+                <div>
+                  <input
+                    type="radio"
+                    name="YearOption"
+                    value="2016"
+                    id="Year2016"
+                    className="peer hidden [&:checked_+_label_svg]:block"
+                    onClick={handleYearSelect}
+                  />
+
+                  <label
+                    htmlFor="Year2016"
+                    className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-rose-400 peer-checked:bg-rose-400 peer-checked:text-white"
+                  >
+                    <svg
+                      className="hidden h-5 w-5"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+
+                    <p className="text-sm font-medium">2016</p>
+                  </label>
+                </div>
+
+                <div>
+                  <input
+                    type="radio"
+                    name="YearOption"
+                    value="2015"
+                    id="Year2015"
+                    className="peer hidden [&:checked_+_label_svg]:block"
+                    onClick={handleYearSelect}
+                  />
+
+                  <label
+                    htmlFor="Year2015"
+                    className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-rose-400 peer-checked:bg-rose-400 peer-checked:text-white"
+                  >
+                    <svg
+                      className="hidden h-5 w-5"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+
+                    <p className="text-sm font-medium">2015</p>
+                  </label>
+                </div>
+                <div>
+                  <input
+                    type="radio"
+                    name="YearOption"
+                    value="2014"
+                    id="Year2014"
+                    className="peer hidden [&:checked_+_label_svg]:block"
+                    onClick={handleYearSelect}
+                  />
+
+                  <label
+                    htmlFor="Year2014"
+                    className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-rose-400 peer-checked:bg-rose-400 peer-checked:text-white"
+                  >
+                    <svg
+                      className="hidden h-5 w-5"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+
+                    <p className="text-sm font-medium">2014</p>
+                  </label>
+                </div>
+                <div>
+                  <input
+                    type="radio"
+                    name="YearOption"
+                    value="2013"
+                    id="Year2013"
+                    className="peer hidden [&:checked_+_label_svg]:block"
+                    onClick={handleYearSelect}
+                  />
+
+                  <label
+                    htmlFor="Year2013"
+                    className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-rose-400 peer-checked:bg-rose-400 peer-checked:text-white"
+                  >
+                    <svg
+                      className="hidden h-5 w-5"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+
+                    <p className="text-sm font-medium">2013</p>
+                  </label>
+                </div>
+                <div>
+                  <input
+                    type="radio"
+                    name="YearOption"
+                    value="2012"
+                    id="Year2012"
+                    className="peer hidden [&:checked_+_label_svg]:block"
+                    onClick={handleYearSelect}
+                  />
+
+                  <label
+                    htmlFor="Year2012"
+                    className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-rose-400 peer-checked:bg-rose-400 peer-checked:text-white"
+                  >
+                    <svg
+                      className="hidden h-5 w-5"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+
+                    <p className="text-sm font-medium">2012</p>
+                  </label>
+                </div>
               </fieldset>
 
-              <span className="py-2 text-sm font-semibold">Type: </span>
+              <span className="py-2 text-med font-semibold">Type: </span>
               <fieldset className="flex flex-wrap gap-3 mb-4">
                 <legend className="sr-only">Type</legend>
 
+                <div>
+                  <input
+                    type="radio"
+                    name="TypeOption"
+                    value="Popular"
+                    id="TypePopular"
+                    className="peer hidden [&:checked_+_label_svg]:block"
+                    onClick={handleTypeSelect}
+                  />
+
+                  <label
+                    htmlFor="TypePopular"
+                    className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-rose-400 peer-checked:bg-rose-400 peer-checked:text-white"
+                  >
+                    <svg
+                      className="hidden h-5 w-5"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+
+                    <p className="text-sm font-medium">Most Popular</p>
+                  </label>
+                </div>
                 <div>
                   <input
                     type="radio"
@@ -557,6 +936,98 @@ export default function Landing() {
                     </svg>
 
                     <p className="text-sm font-medium">Chill</p>
+                  </label>
+                </div>
+
+                <div>
+                  <input
+                    type="radio"
+                    name="TypeOption"
+                    value="Party"
+                    id="TypeParty"
+                    className="peer hidden [&:checked_+_label_svg]:block"
+                    onClick={handleTypeSelect}
+                  />
+
+                  <label
+                    htmlFor="TypeParty"
+                    className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-rose-400 peer-checked:bg-rose-400 peer-checked:text-white"
+                  >
+                    <svg
+                      className="hidden h-5 w-5"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+
+                    <p className="text-sm font-medium">Party</p>
+                  </label>
+                </div>
+
+                <div>
+                  <input
+                    type="radio"
+                    name="TypeOption"
+                    value="Sleep"
+                    id="TypeSleep"
+                    className="peer hidden [&:checked_+_label_svg]:block"
+                    onClick={handleTypeSelect}
+                  />
+
+                  <label
+                    htmlFor="TypeSleep"
+                    className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-rose-400 peer-checked:bg-rose-400 peer-checked:text-white"
+                  >
+                    <svg
+                      className="hidden h-5 w-5"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+
+                    <p className="text-sm font-medium">Sleep</p>
+                  </label>
+                </div>
+                <div>
+                  <input
+                    type="radio"
+                    name="TypeOption"
+                    value="Focus"
+                    id="TypeFocus"
+                    className="peer hidden [&:checked_+_label_svg]:block"
+                    onClick={handleTypeSelect}
+                  />
+
+                  <label
+                    htmlFor="TypeFocus"
+                    className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-rose-400 peer-checked:bg-rose-400 peer-checked:text-white"
+                  >
+                    <svg
+                      className="hidden h-5 w-5"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+
+                    <p className="text-sm font-medium">Focus</p>
                   </label>
                 </div>
               </fieldset>

@@ -8,7 +8,7 @@ const AiPlaylist = ({ playlistData }) => {
       >
         <span className="text-sm text-black capitalize font-semibold pt-1">
           {i + 1}. {song.title} -{" "}
-          <span className="text-xs text-gray-500 uppercase font-medium ">
+          <span className="text-xs text-gray-600 uppercase font-medium">
             {song.artist}
           </span>
         </span>
