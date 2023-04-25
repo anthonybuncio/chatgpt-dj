@@ -1,3 +1,4 @@
+import AiPlaylist from "@/components/AiPlaylist";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -12,6 +13,8 @@ export default function Landing() {
   const [inputYear, setInputYear] = useState(null);
   const [inputType, setInputType] = useState(null);
 
+  const [gptResponse, setGptResponse] = useState();
+
   const handleGenreSelect = (e) => {
     setInputGenre(e.target.value);
   };
@@ -24,37 +27,61 @@ export default function Landing() {
     setInputType(e.target.value);
   };
 
-  const handleForm = (e) => {
+  const handleForm = async (e) => {
     e.preventDefault();
-    console.log("send form with this info: ", {
+    const input = {
       genre: inputGenre,
       year: inputYear,
       type: inputType,
-    });
+    };
+    console.log("send form with this info: ", input);
+    await processMessage(input);
+  };
+
+  const processMessage = async (formPrompt) => {
+    const data = await fetch("/api/create-playlist", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        prompt: formPrompt,
+      }),
+    }).then((response) => response.json());
+
+    console.log("received response, PRE-PARSE", data);
+
+    if (data.text) {
+      const dataObj = JSON.parse(data.text);
+      console.log("return data", dataObj);
+      setGptResponse(data.text);
+    }
   };
 
   return (
     <>
       <div className="flex min-h-screen flex-col items-center justify-start">
-        <img className="w-48 h-48" src="logo.png" alt="Workflow" />
-        <div className=" flex flex-row justify-around w-full h-full">
-          <div className=" flex flex-col">
+        <img className="w-24 h-24" src="logo.png" alt="Workflow" />
+        <div className=" flex flex-row w-full h-full">
+          <div className=" flex flex-col items-center w-1/2 h-full">
+            <span className="p-4">Playlist Generator</span>
             <form onSubmit={handleForm}>
+              <span className="py-2 text-sm font-medium">Genre: </span>
               <fieldset className="flex flex-wrap gap-3 mb-4">
                 <legend className="sr-only">Genre</legend>
 
                 <div>
                   <input
                     type="radio"
-                    name="ColorOption"
+                    name="GenreOption"
                     value="HipHop"
-                    id="ColorBlack"
+                    id="GenreBlack"
                     className="peer hidden [&:checked_+_label_svg]:block"
                     onClick={handleGenreSelect}
                   />
 
                   <label
-                    htmlFor="ColorBlack"
+                    htmlFor="GenreBlack"
                     className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-blue-500 peer-checked:bg-blue-500 peer-checked:text-white"
                   >
                     <svg
@@ -64,9 +91,9 @@ export default function Landing() {
                       fill="currentColor"
                     >
                       <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                        clip-rule="evenodd"
+                        clipRule="evenodd"
                       />
                     </svg>
 
@@ -77,15 +104,15 @@ export default function Landing() {
                 <div>
                   <input
                     type="radio"
-                    name="ColorOption"
+                    name="GenreOption"
                     value="Pop"
-                    id="ColorRed"
+                    id="GenreRed"
                     className="peer hidden [&:checked_+_label_svg]:block"
                     onClick={handleGenreSelect}
                   />
 
                   <label
-                    htmlFor="ColorRed"
+                    htmlFor="GenreRed"
                     className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-blue-500 peer-checked:bg-blue-500 peer-checked:text-white"
                   >
                     <svg
@@ -95,9 +122,9 @@ export default function Landing() {
                       fill="currentColor"
                     >
                       <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                        clip-rule="evenodd"
+                        clipRule="evenodd"
                       />
                     </svg>
 
@@ -108,15 +135,15 @@ export default function Landing() {
                 <div>
                   <input
                     type="radio"
-                    name="ColorOption"
+                    name="GenreOption"
                     value="RnB"
-                    id="ColorBlue"
+                    id="GenreBlue"
                     className="peer hidden [&:checked_+_label_svg]:block"
                     onClick={handleGenreSelect}
                   />
 
                   <label
-                    htmlFor="ColorBlue"
+                    htmlFor="GenreBlue"
                     className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-blue-500 peer-checked:bg-blue-500 peer-checked:text-white"
                   >
                     <svg
@@ -126,9 +153,9 @@ export default function Landing() {
                       fill="currentColor"
                     >
                       <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                        clip-rule="evenodd"
+                        clipRule="evenodd"
                       />
                     </svg>
 
@@ -139,15 +166,15 @@ export default function Landing() {
                 <div>
                   <input
                     type="radio"
-                    name="ColorOption"
+                    name="GenreOption"
                     value="country"
-                    id="ColorGold"
+                    id="GenreGold"
                     className="peer hidden [&:checked_+_label_svg]:block"
                     onClick={handleGenreSelect}
                   />
 
                   <label
-                    htmlFor="ColorGold"
+                    htmlFor="GenreGold"
                     className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-blue-500 peer-checked:bg-blue-500 peer-checked:text-white"
                   >
                     <svg
@@ -157,9 +184,9 @@ export default function Landing() {
                       fill="currentColor"
                     >
                       <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                        clip-rule="evenodd"
+                        clipRule="evenodd"
                       />
                     </svg>
 
@@ -168,6 +195,7 @@ export default function Landing() {
                 </div>
               </fieldset>
 
+              <span className="py-2 text-sm font-medium">Year: </span>
               <fieldset className="flex flex-wrap gap-3 mb-4">
                 <legend className="sr-only">Year</legend>
 
@@ -176,13 +204,13 @@ export default function Landing() {
                     type="radio"
                     name="YearOption"
                     value="2020"
-                    id="ColorBlack"
+                    id="YearBlack"
                     className="peer hidden [&:checked_+_label_svg]:block"
                     onClick={handleYearSelect}
                   />
 
                   <label
-                    htmlFor="ColorBlack"
+                    htmlFor="YearBlack"
                     className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-blue-500 peer-checked:bg-blue-500 peer-checked:text-white"
                   >
                     <svg
@@ -192,9 +220,9 @@ export default function Landing() {
                       fill="currentColor"
                     >
                       <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                        clip-rule="evenodd"
+                        clipRule="evenodd"
                       />
                     </svg>
 
@@ -207,13 +235,13 @@ export default function Landing() {
                     type="radio"
                     name="YearOption"
                     value="2019"
-                    id="ColorRed"
+                    id="YearRed"
                     className="peer hidden [&:checked_+_label_svg]:block"
                     onClick={handleYearSelect}
                   />
 
                   <label
-                    htmlFor="ColorRed"
+                    htmlFor="YearRed"
                     className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-blue-500 peer-checked:bg-blue-500 peer-checked:text-white"
                   >
                     <svg
@@ -223,9 +251,9 @@ export default function Landing() {
                       fill="currentColor"
                     >
                       <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                        clip-rule="evenodd"
+                        clipRule="evenodd"
                       />
                     </svg>
 
@@ -254,9 +282,9 @@ export default function Landing() {
                       fill="currentColor"
                     >
                       <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                        clip-rule="evenodd"
+                        clipRule="evenodd"
                       />
                     </svg>
 
@@ -285,9 +313,9 @@ export default function Landing() {
                       fill="currentColor"
                     >
                       <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                        clip-rule="evenodd"
+                        clipRule="evenodd"
                       />
                     </svg>
 
@@ -296,6 +324,7 @@ export default function Landing() {
                 </div>
               </fieldset>
 
+              <span className="py-2 text-sm font-medium">Type: </span>
               <fieldset className="flex flex-wrap gap-3 mb-4">
                 <legend className="sr-only">Type</legend>
 
@@ -320,9 +349,9 @@ export default function Landing() {
                       fill="currentColor"
                     >
                       <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                        clip-rule="evenodd"
+                        clipRule="evenodd"
                       />
                     </svg>
 
@@ -351,9 +380,9 @@ export default function Landing() {
                       fill="currentColor"
                     >
                       <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                        clip-rule="evenodd"
+                        clipRule="evenodd"
                       />
                     </svg>
 
@@ -382,9 +411,9 @@ export default function Landing() {
                       fill="currentColor"
                     >
                       <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                        clip-rule="evenodd"
+                        clipRule="evenodd"
                       />
                     </svg>
 
@@ -413,9 +442,9 @@ export default function Landing() {
                       fill="currentColor"
                     >
                       <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                        clip-rule="evenodd"
+                        clipRule="evenodd"
                       />
                     </svg>
 
@@ -425,13 +454,15 @@ export default function Landing() {
               </fieldset>
               <button
                 type="submit"
-                className="inline-block rounded-lg bg-gray-700 px-5 py-3 text-sm font-medium text-white"
+                className="inline-block rounded-lg bg-rose-500 px-5 py-3 text-sm font-medium text-white mt-8 uppercase"
               >
-                Create
+                Create playlist
               </button>
             </form>
           </div>
-          <div>your playlist</div>
+          <div className=" flex flex-col items-center w-1/2 h-full">
+            <AiPlaylist />
+          </div>
         </div>
       </div>
     </>
