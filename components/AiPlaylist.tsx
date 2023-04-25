@@ -1,93 +1,5 @@
-const AiPlaylist = () => {
-  const playlistData = {
-    playlist_name: "Hip-Hop Workouts 2017",
-    playlist_description:
-      "A collection of Hip-Hop tracks released in 2017 to help you get moving 🏃‍♂️",
-    playlist_cover_art: "🏃‍♂️",
-    songs: [
-      {
-        artist: "Kendrick Lamar",
-        title: "DNA",
-      },
-      {
-        artist: "Cardi B",
-        title: "Bodak Yellow",
-      },
-      {
-        artist: "Drake",
-        title: "Controlla",
-      },
-      {
-        artist: "21 Savage, Offset & Metro Boomin",
-        title: "No Heart",
-      },
-      {
-        artist: "Migos",
-        title: "Bad and Boujee",
-      },
-      {
-        artist: "Future",
-        title: "Mask Off",
-      },
-      {
-        artist: "SZA",
-        title: "Love Galore",
-      },
-      {
-        artist: "Big Sean",
-        title: "Bounce Back",
-      },
-      {
-        artist: "Gucci Mane",
-        title: "Both",
-      },
-      {
-        artist: "Kanye West",
-        title: "Famous",
-      },
-      {
-        artist: "Post Malone ft. Quavo",
-        title: "Congratulations",
-      },
-      {
-        artist: "A Boogie Wit da Hoodie",
-        title: "Drowning",
-      },
-      {
-        artist: "DJ Khaled ft. Rihanna & Bryson Tiller",
-        title: "Wild Thoughts",
-      },
-      {
-        artist: "French Montana ft. Swae Lee",
-        title: "Unforgettable",
-      },
-      {
-        artist: "Young Thug & Travis Scott ft. Quavo",
-        title: "Pick Up the Phone",
-      },
-      {
-        artist: "Lil Uzi Vert",
-        title: "XO Tour Llif3",
-      },
-      {
-        artist: "2 Chainz",
-        title: "4 AM",
-      },
-      {
-        artist: "Yo Gotti ft. Nicki Minaj",
-        title: "Rake It Up",
-      },
-      {
-        artist: "Playboi Carti",
-        title: "Magnolia",
-      },
-      {
-        artist: "J. Cole",
-        title: "Deja Vu",
-      },
-    ],
-  };
-
+const AiPlaylist = ({ playlistData }) => {
+  console.log("Playlist to render: ", playlistData);
   function trackData(song, i) {
     return (
       <div
@@ -95,18 +7,18 @@ const AiPlaylist = () => {
         className="flex flex-col border-b border-gray-200 p-2 w-full hover:shadow-md cursor-pointer"
       >
         <span className="text-sm text-black capitalize font-semibold pt-1">
-          {i + 1}. {song.title}
-        </span>
-        <span className="text-xs text-gray-500 uppercase font-medium ">
-          {song.artist}
+          {i + 1}. {song.title} -{" "}
+          <span className="text-xs text-gray-500 uppercase font-medium ">
+            {song.artist}
+          </span>
         </span>
       </div>
     );
   }
   return (
     <div className=" w-full max-h-screen m-2">
-      <div className="flex w-5/6 shadow-md rounded-lg overflow-hidden mx-auto border-2 border-gray-100">
-        <div className="flex flex-col w-full h-screen">
+      <div className="flex w-2/3 shadow-md rounded-lg overflow-hidden mx-auto border-2 border-gray-100">
+        <div className="flex flex-col w-full">
           <div className="flex p-4 border-b border-gray-100">
             <div className="w-20 h-20 text-5xl flex justify-center items-center">
               {playlistData.playlist_cover_art}

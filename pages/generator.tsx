@@ -15,7 +15,6 @@ export default function Generator({}) {
           <Nav />
           <div className="flex flex-row ">
             <SongForm />
-            <AiPlaylist />
             <SavedPlaylists />
           </div>
         </div>

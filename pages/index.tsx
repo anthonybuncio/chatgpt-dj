@@ -8,12 +8,102 @@ const genres = [
   { name: "R&B", value: "rnb" },
   { name: "Country", value: "country" },
 ];
+
+const playlistData = {
+  playlist_name: "Hip-Hop Workouts 2017",
+  playlist_description:
+    "A collection of Hip-Hop tracks released in 2017 to help you get moving 🏃‍♂️",
+  playlist_cover_art: "🏃‍♂️",
+  songs: [
+    {
+      artist: "Kendrick Lamar",
+      title: "DNA",
+    },
+    {
+      artist: "Cardi B",
+      title: "Bodak Yellow",
+    },
+    {
+      artist: "Drake",
+      title: "Controlla",
+    },
+    {
+      artist: "21 Savage, Offset & Metro Boomin",
+      title: "No Heart",
+    },
+    {
+      artist: "Migos",
+      title: "Bad and Boujee",
+    },
+    {
+      artist: "Future",
+      title: "Mask Off",
+    },
+    {
+      artist: "SZA",
+      title: "Love Galore",
+    },
+    {
+      artist: "Big Sean",
+      title: "Bounce Back",
+    },
+    {
+      artist: "Gucci Mane",
+      title: "Both",
+    },
+    {
+      artist: "Kanye West",
+      title: "Famous",
+    },
+    {
+      artist: "Post Malone ft. Quavo",
+      title: "Congratulations",
+    },
+    {
+      artist: "A Boogie Wit da Hoodie",
+      title: "Drowning",
+    },
+    {
+      artist: "DJ Khaled ft. Rihanna & Bryson Tiller",
+      title: "Wild Thoughts",
+    },
+    {
+      artist: "French Montana ft. Swae Lee",
+      title: "Unforgettable",
+    },
+    {
+      artist: "Young Thug & Travis Scott ft. Quavo",
+      title: "Pick Up the Phone",
+    },
+    {
+      artist: "Lil Uzi Vert",
+      title: "XO Tour Llif3",
+    },
+    {
+      artist: "2 Chainz",
+      title: "4 AM",
+    },
+    {
+      artist: "Yo Gotti ft. Nicki Minaj",
+      title: "Rake It Up",
+    },
+    // {
+    //   artist: "Playboi Carti",
+    //   title: "Magnolia",
+    // },
+    // {
+    //   artist: "J. Cole",
+    //   title: "Deja Vu",
+    // },
+  ],
+};
+
 export default function Landing() {
   const [inputGenre, setInputGenre] = useState(null);
   const [inputYear, setInputYear] = useState(null);
   const [inputType, setInputType] = useState(null);
 
-  const [gptResponse, setGptResponse] = useState();
+  const [gptResponse, setGptResponse] = useState({});
 
   const handleGenreSelect = (e) => {
     setInputGenre(e.target.value);
@@ -49,24 +139,42 @@ export default function Landing() {
       }),
     }).then((response) => response.json());
 
-    console.log("received response, PRE-PARSE", data);
-
     if (data.text) {
       const dataObj = JSON.parse(data.text);
       console.log("return data", dataObj);
-      setGptResponse(data.text);
+      setGptResponse(dataObj);
     }
   };
 
+  console.log("Component: Response state ", gptResponse);
   return (
     <>
       <div className="flex min-h-screen flex-col items-center justify-start">
-        <img className="w-24 h-24" src="logo.png" alt="Workflow" />
-        <div className=" flex flex-row w-full h-full">
-          <div className=" flex flex-col items-center w-1/2 h-full">
-            <span className="p-4">Playlist Generator</span>
+        <div className=" flex flex-row w-full h-full justify-center">
+          <div className=" flex flex-col items-center ">
+            <img className="w-24 h-24" src="logo.png" alt="Workflow" />
+            <span className="p-4 uppercase font-extrabold">
+              Playlist Generator
+            </span>
             <form onSubmit={handleForm}>
-              <span className="py-2 text-sm font-medium">Genre: </span>
+              <span className="py-2 text-sm font-semibold">
+                API KEY:
+                <span className=" text-rose-500 text-xs px-2 uppercase">
+                  <Link href="https://platform.openai.com/signup">
+                    Get Yours Here
+                  </Link>
+                </span>
+              </span>
+
+              <div>
+                <input
+                  type="text"
+                  placeholder="OpenAI API KEY"
+                  className="mb-8 flex items-center justify-center gap-2 rounded-md border border-gray-100 p-2 text-gray-900 outline-none"
+                />
+              </div>
+
+              <span className="py-2 text-sm font-semibold">Genre: </span>
               <fieldset className="flex flex-wrap gap-3 mb-4">
                 <legend className="sr-only">Genre</legend>
 
@@ -82,7 +190,7 @@ export default function Landing() {
 
                   <label
                     htmlFor="GenreBlack"
-                    className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-blue-500 peer-checked:bg-blue-500 peer-checked:text-white"
+                    className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-rose-400 peer-checked:bg-rose-400 peer-checked:text-white"
                   >
                     <svg
                       className="hidden h-5 w-5"
@@ -113,7 +221,7 @@ export default function Landing() {
 
                   <label
                     htmlFor="GenreRed"
-                    className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-blue-500 peer-checked:bg-blue-500 peer-checked:text-white"
+                    className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-rose-400 peer-checked:bg-rose-400 peer-checked:text-white"
                   >
                     <svg
                       className="hidden h-5 w-5"
@@ -144,7 +252,7 @@ export default function Landing() {
 
                   <label
                     htmlFor="GenreBlue"
-                    className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-blue-500 peer-checked:bg-blue-500 peer-checked:text-white"
+                    className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-rose-400 peer-checked:bg-rose-400 peer-checked:text-white"
                   >
                     <svg
                       className="hidden h-5 w-5"
@@ -175,7 +283,7 @@ export default function Landing() {
 
                   <label
                     htmlFor="GenreGold"
-                    className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-blue-500 peer-checked:bg-blue-500 peer-checked:text-white"
+                    className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-rose-400 peer-checked:bg-rose-400 peer-checked:text-white"
                   >
                     <svg
                       className="hidden h-5 w-5"
@@ -195,7 +303,7 @@ export default function Landing() {
                 </div>
               </fieldset>
 
-              <span className="py-2 text-sm font-medium">Year: </span>
+              <span className="py-2 text-sm font-semibold">Year: </span>
               <fieldset className="flex flex-wrap gap-3 mb-4">
                 <legend className="sr-only">Year</legend>
 
@@ -211,7 +319,7 @@ export default function Landing() {
 
                   <label
                     htmlFor="YearBlack"
-                    className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-blue-500 peer-checked:bg-blue-500 peer-checked:text-white"
+                    className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-rose-400 peer-checked:bg-rose-400 peer-checked:text-white"
                   >
                     <svg
                       className="hidden h-5 w-5"
@@ -242,7 +350,7 @@ export default function Landing() {
 
                   <label
                     htmlFor="YearRed"
-                    className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-blue-500 peer-checked:bg-blue-500 peer-checked:text-white"
+                    className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-rose-400 peer-checked:bg-rose-400 peer-checked:text-white"
                   >
                     <svg
                       className="hidden h-5 w-5"
@@ -273,7 +381,7 @@ export default function Landing() {
 
                   <label
                     htmlFor="YearBlue"
-                    className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-blue-500 peer-checked:bg-blue-500 peer-checked:text-white"
+                    className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-rose-400 peer-checked:bg-rose-400 peer-checked:text-white"
                   >
                     <svg
                       className="hidden h-5 w-5"
@@ -304,7 +412,7 @@ export default function Landing() {
 
                   <label
                     htmlFor="YearGold"
-                    className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-blue-500 peer-checked:bg-blue-500 peer-checked:text-white"
+                    className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-rose-400 peer-checked:bg-rose-400 peer-checked:text-white"
                   >
                     <svg
                       className="hidden h-5 w-5"
@@ -324,7 +432,7 @@ export default function Landing() {
                 </div>
               </fieldset>
 
-              <span className="py-2 text-sm font-medium">Type: </span>
+              <span className="py-2 text-sm font-semibold">Type: </span>
               <fieldset className="flex flex-wrap gap-3 mb-4">
                 <legend className="sr-only">Type</legend>
 
@@ -340,7 +448,7 @@ export default function Landing() {
 
                   <label
                     htmlFor="TypeBlack"
-                    className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-blue-500 peer-checked:bg-blue-500 peer-checked:text-white"
+                    className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-rose-400 peer-checked:bg-rose-400 peer-checked:text-white"
                   >
                     <svg
                       className="hidden h-5 w-5"
@@ -371,7 +479,7 @@ export default function Landing() {
 
                   <label
                     htmlFor="TypeRed"
-                    className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-blue-500 peer-checked:bg-blue-500 peer-checked:text-white"
+                    className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-rose-400 peer-checked:bg-rose-400 peer-checked:text-white"
                   >
                     <svg
                       className="hidden h-5 w-5"
@@ -402,7 +510,7 @@ export default function Landing() {
 
                   <label
                     htmlFor="TypeBlue"
-                    className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-blue-500 peer-checked:bg-blue-500 peer-checked:text-white"
+                    className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-rose-400 peer-checked:bg-rose-400 peer-checked:text-white"
                   >
                     <svg
                       className="hidden h-5 w-5"
@@ -433,7 +541,7 @@ export default function Landing() {
 
                   <label
                     htmlFor="TypeGold"
-                    className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-blue-500 peer-checked:bg-blue-500 peer-checked:text-white"
+                    className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-rose-400 peer-checked:bg-rose-400 peer-checked:text-white"
                   >
                     <svg
                       className="hidden h-5 w-5"
@@ -460,8 +568,8 @@ export default function Landing() {
               </button>
             </form>
           </div>
-          <div className=" flex flex-col items-center w-1/2 h-full">
-            <AiPlaylist />
+          <div className=" flex flex-col items-center ">
+            <AiPlaylist playlistData={playlistData} />
           </div>
         </div>
       </div>
