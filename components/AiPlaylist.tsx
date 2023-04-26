@@ -8,7 +8,7 @@ const AiPlaylist = ({ playlistData }) => {
       >
         <span className="text-sm text-black capitalize font-semibold pt-1">
           {i + 1}. {song.title} -{" "}
-          <span className="text-xs text-gray-600 uppercase font-medium">
+          <span className="text-xs text-gray-600 uppercase font-semibold">
             {song.artist}
           </span>
         </span>
@@ -38,16 +38,6 @@ const AiPlaylist = ({ playlistData }) => {
           </div>
 
           <div className="flex flex-col p-4 overflow-y-auto">
-            {/* <div className="border-b pb-1 flex justify-between items-center mb-2">
-              <span className=" text-base font-semibold uppercase text-gray-700">
-                playlist
-              </span>
-              <img
-                className="w-4 cursor-pointer"
-                src="https://p.kindpng.com/picc/s/152-1529312_filter-ios-filter-icon-png-transparent-png.png"
-              />
-            </div> */}
-
             {playlistData.songs?.map((song, i) => trackData(song, i))}
           </div>
         </div>

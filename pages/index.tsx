@@ -157,15 +157,15 @@ export default function Landing() {
     const key = openAiKey;
     console.log("send form with this info: ", input, key);
 
-    // if (
-    //   inputGenre === null ||
-    //   inputYear === null ||
-    //   inputType === null ||
-    //   openAiKey === null
-    // ) {
-    //   alert("missing input");
-    // }
-    // await processMessage(input, key);
+    if (
+      inputGenre === null ||
+      inputYear === null ||
+      inputType === null ||
+      openAiKey === null
+    ) {
+      alert("missing input");
+    }
+    await processMessage(input, key);
   };
 
   const processMessage = async (formPrompt, userApiKey) => {
@@ -190,9 +190,9 @@ export default function Landing() {
 
   return (
     <>
-      <div className="flex flex-col min-h-screen items-center justify-start py-2">
-        <div className=" flex flex-row w-full h-full justify-center">
-          <div className=" flex flex-col items-center w-1/4">
+      <div className="flex flex-col min-h-screen items-center justify-start ">
+        <div className=" flex flex-row w-full h-full justify-evenly py-2">
+          <div className="flex flex-col items-center w-1/4 ">
             <img className="w-36 h-36" src="logo.png" alt="Workflow" />
             <span className="mb-8 uppercase text-xl font-extrabold">
               Playlist Generator
@@ -1069,7 +1069,7 @@ export default function Landing() {
               </button>
             </form>
           </div>
-          <div className=" flex flex-col items-center">
+          <div className=" flex flex-col items-center w-1/4">
             {gptResponse && <AiPlaylist playlistData={gptResponse} />}
           </div>
         </div>
