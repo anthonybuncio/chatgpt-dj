@@ -1,5 +1,4 @@
 import AiPlaylist from "@/components/AiPlaylist";
-import Nav from "@/components/Nav";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -39,7 +38,7 @@ const types = [
 ];
 
 const playlistData = {
-  playlist_name: "Hip-Hop Workouts 2017",
+  playlist_name: "Hip-Hop Workouts 2017 DEMO",
   playlist_description:
     "A collection of Hip-Hop tracks released in 2017 to help you get moving 🏃‍♂️",
   playlist_cover_art: "🏃‍♂️",
@@ -127,13 +126,13 @@ const playlistData = {
   ],
 };
 
-export default function Landing() {
+export default function Home() {
   const [inputGenre, setInputGenre] = useState(null);
   const [inputYear, setInputYear] = useState(null);
   const [inputType, setInputType] = useState(null);
   const [openAiKey, setOpenAiKey] = useState(null);
 
-  const [gptResponse, setGptResponse] = useState({});
+  const [gptResponse, setGptResponse] = useState(null);
 
   const handleGenreSelect = (e) => {
     setInputGenre(e.target.value);
@@ -1070,7 +1069,9 @@ export default function Landing() {
             </form>
           </div>
           <div className=" flex flex-col items-center w-1/4">
-            {gptResponse && <AiPlaylist playlistData={gptResponse} />}
+            <AiPlaylist
+              playlistData={gptResponse ? gptResponse : playlistData}
+            />
           </div>
         </div>
       </div>
