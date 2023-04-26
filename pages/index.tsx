@@ -8,6 +8,34 @@ const genres = [
   { name: "Pop", value: "pop" },
   { name: "R&B", value: "rnb" },
   { name: "Country", value: "country" },
+  { name: "Latin", value: "latin" },
+  { name: "Rock", value: "rock" },
+  { name: "Indie", value: "indie" },
+  { name: "Electronic", value: "electronic" },
+  { name: "Jazz", value: "jazz" },
+  { name: "Metal", value: "metal" },
+];
+
+const years = [
+  { name: "2020", value: "2020" },
+  { name: "2019", value: "2019" },
+  { name: "2018", value: "2018" },
+  { name: "2017", value: "2017" },
+  { name: "2016", value: "2016" },
+  { name: "2015", value: "2015" },
+  { name: "2014", value: "2014" },
+  { name: "2013", value: "2013" },
+];
+
+const types = [
+  { name: "Most Popular", value: "popular" },
+  { name: "Workout", value: "workout" },
+  { name: "Running", value: "running" },
+  { name: "Driving", value: "driving" },
+  { name: "Chill", value: "chill" },
+  { name: "Party", value: "party" },
+  { name: "Sleep", value: "sleep" },
+  { name: "Focus", value: "focus" },
 ];
 
 const playlistData = {
@@ -129,15 +157,15 @@ export default function Landing() {
     const key = openAiKey;
     console.log("send form with this info: ", input, key);
 
-    if (
-      inputGenre === null ||
-      inputYear === null ||
-      inputType === null ||
-      openAiKey === null
-    ) {
-      alert("missing input");
-    }
-    await processMessage(input, key);
+    // if (
+    //   inputGenre === null ||
+    //   inputYear === null ||
+    //   inputType === null ||
+    //   openAiKey === null
+    // ) {
+    //   alert("missing input");
+    // }
+    // await processMessage(input, key);
   };
 
   const processMessage = async (formPrompt, userApiKey) => {
@@ -160,10 +188,9 @@ export default function Landing() {
     }
   };
 
-  console.log("Component: Response state ", gptResponse);
   return (
     <>
-      <div className="flex flex-col h-full items-center justify-start py-2">
+      <div className="flex flex-col min-h-screen items-center justify-start py-2">
         <div className=" flex flex-row w-full h-full justify-center">
           <div className=" flex flex-col items-center w-1/4">
             <img className="w-36 h-36" src="logo.png" alt="Workflow" />
@@ -200,13 +227,13 @@ export default function Landing() {
                     type="radio"
                     name="GenreOption"
                     value="HipHop"
-                    id="GenreBlack"
+                    id="GenreHipHop"
                     className="peer hidden [&:checked_+_label_svg]:block"
                     onClick={handleGenreSelect}
                   />
 
                   <label
-                    htmlFor="GenreBlack"
+                    htmlFor="GenreHipHop"
                     className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-purple-400 peer-checked:bg-purple-400 peer-checked:text-white"
                   >
                     <svg
@@ -231,13 +258,13 @@ export default function Landing() {
                     type="radio"
                     name="GenreOption"
                     value="Pop"
-                    id="GenreRed"
+                    id="GenrePop"
                     className="peer hidden [&:checked_+_label_svg]:block"
                     onClick={handleGenreSelect}
                   />
 
                   <label
-                    htmlFor="GenreRed"
+                    htmlFor="GenrePop"
                     className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-purple-400 peer-checked:bg-purple-400 peer-checked:text-white"
                   >
                     <svg
@@ -262,13 +289,13 @@ export default function Landing() {
                     type="radio"
                     name="GenreOption"
                     value="RnB"
-                    id="GenreBlue"
+                    id="GenreRnB"
                     className="peer hidden [&:checked_+_label_svg]:block"
                     onClick={handleGenreSelect}
                   />
 
                   <label
-                    htmlFor="GenreBlue"
+                    htmlFor="GenreRnB"
                     className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-purple-400 peer-checked:bg-purple-400 peer-checked:text-white"
                   >
                     <svg
@@ -292,14 +319,14 @@ export default function Landing() {
                   <input
                     type="radio"
                     name="GenreOption"
-                    value="country"
-                    id="GenreGold"
+                    value="Country"
+                    id="GenreCountry"
                     className="peer hidden [&:checked_+_label_svg]:block"
                     onClick={handleGenreSelect}
                   />
 
                   <label
-                    htmlFor="GenreGold"
+                    htmlFor="GenreCountry"
                     className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-purple-400 peer-checked:bg-purple-400 peer-checked:text-white"
                   >
                     <svg
@@ -323,7 +350,7 @@ export default function Landing() {
                   <input
                     type="radio"
                     name="GenreOption"
-                    value="latin"
+                    value="Latin"
                     id="GenreLatin"
                     className="peer hidden [&:checked_+_label_svg]:block"
                     onClick={handleGenreSelect}
@@ -353,7 +380,7 @@ export default function Landing() {
                   <input
                     type="radio"
                     name="GenreOption"
-                    value="rock"
+                    value="Rock"
                     id="GenreRock"
                     className="peer hidden [&:checked_+_label_svg]:block"
                     onClick={handleGenreSelect}
@@ -384,7 +411,7 @@ export default function Landing() {
                   <input
                     type="radio"
                     name="GenreOption"
-                    value="indie"
+                    value="Indie"
                     id="GenreIndie"
                     className="peer hidden [&:checked_+_label_svg]:block"
                     onClick={handleGenreSelect}
@@ -415,14 +442,14 @@ export default function Landing() {
                   <input
                     type="radio"
                     name="GenreOption"
-                    value="dance/electronic"
-                    id="GenreDance"
+                    value="Electronic"
+                    id="GenreElectronic"
                     className="peer hidden [&:checked_+_label_svg]:block"
                     onClick={handleGenreSelect}
                   />
 
                   <label
-                    htmlFor="GenreDance"
+                    htmlFor="GenreElectronic"
                     className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-purple-400 peer-checked:bg-purple-400 peer-checked:text-white"
                   >
                     <svg
@@ -445,7 +472,7 @@ export default function Landing() {
                   <input
                     type="radio"
                     name="GenreOption"
-                    value="jazz"
+                    value="Jazz"
                     id="GenreJazz"
                     className="peer hidden [&:checked_+_label_svg]:block"
                     onClick={handleGenreSelect}
@@ -475,7 +502,7 @@ export default function Landing() {
                   <input
                     type="radio"
                     name="GenreOption"
-                    value="metal"
+                    value="Metal"
                     id="GenreMetal"
                     className="peer hidden [&:checked_+_label_svg]:block"
                     onClick={handleGenreSelect}
@@ -823,13 +850,13 @@ export default function Landing() {
                     type="radio"
                     name="TypeOption"
                     value="Workout"
-                    id="TypeBlack"
+                    id="TypeWorkout"
                     className="peer hidden [&:checked_+_label_svg]:block"
                     onClick={handleTypeSelect}
                   />
 
                   <label
-                    htmlFor="TypeBlack"
+                    htmlFor="TypeWorkout"
                     className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-purple-400 peer-checked:bg-purple-400 peer-checked:text-white"
                   >
                     <svg
@@ -854,13 +881,13 @@ export default function Landing() {
                     type="radio"
                     name="TypeOption"
                     value="Running"
-                    id="TypeRed"
+                    id="TypeRunning"
                     className="peer hidden [&:checked_+_label_svg]:block"
                     onClick={handleTypeSelect}
                   />
 
                   <label
-                    htmlFor="TypeRed"
+                    htmlFor="TypeRunning"
                     className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-purple-400 peer-checked:bg-purple-400 peer-checked:text-white"
                   >
                     <svg
@@ -885,13 +912,13 @@ export default function Landing() {
                     type="radio"
                     name="TypeOption"
                     value="Driving"
-                    id="TypeBlue"
+                    id="TypeDriving"
                     className="peer hidden [&:checked_+_label_svg]:block"
                     onClick={handleTypeSelect}
                   />
 
                   <label
-                    htmlFor="TypeBlue"
+                    htmlFor="TypeDriving"
                     className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-purple-400 peer-checked:bg-purple-400 peer-checked:text-white"
                   >
                     <svg
@@ -916,13 +943,13 @@ export default function Landing() {
                     type="radio"
                     name="TypeOption"
                     value="Chill"
-                    id="TypeGold"
+                    id="TypeChill"
                     className="peer hidden [&:checked_+_label_svg]:block"
                     onClick={handleTypeSelect}
                   />
 
                   <label
-                    htmlFor="TypeGold"
+                    htmlFor="TypeChill"
                     className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-purple-400 peer-checked:bg-purple-400 peer-checked:text-white"
                   >
                     <svg
