@@ -16,22 +16,22 @@ const AiPlaylist = ({ playlistData }) => {
     );
   }
   return (
-    <div className=" w-full max-h-screen m-2">
-      <div className="flex w-2/3 shadow-md rounded-lg overflow-hidden mx-auto border-2 border-gray-100">
+    <div className=" w-full h-full m-2 px-4">
+      <div className="flex w-full shadow-md rounded-lg overflow-hidden mx-auto border-2 border-gray-100">
         <div className="flex flex-col w-full">
-          <div className="flex p-4 border-b border-gray-100">
+          <div className="flex flex-row items-center p-2 border-b-2 border-gray-100">
             <div className="w-20 h-20 text-5xl flex justify-center items-center">
               {playlistData.playlist_cover_art}
             </div>
 
             <div className="flex flex-col px-2 w-full">
-              <span className="text-xs text-gray-700 uppercase font-medium ">
+              <span className="text-xs text-gray-500 uppercase font-bold ">
                 play ai playlist
               </span>
-              <span className="text-sm text-red-500 capitalize font-semibold pt-1">
+              <span className="text-md text-red-500 capitalize font-semibold pt-1">
                 {playlistData.playlist_name}
               </span>
-              <span className="text-xs text-gray-900 uppercase font-medium">
+              <span className="text-xs text-gray-900 font-semibold">
                 {playlistData.playlist_description}
               </span>
             </div>
@@ -48,7 +48,7 @@ const AiPlaylist = ({ playlistData }) => {
               />
             </div> */}
 
-            {playlistData.songs.map((song, i) => trackData(song, i))}
+            {playlistData.songs?.map((song, i) => trackData(song, i))}
           </div>
         </div>
       </div>

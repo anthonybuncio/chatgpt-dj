@@ -8,7 +8,7 @@ const Nav = () => {
   console.log("navigation component user data:", user);
   return (
     <div>
-      <nav className=" dark:bg-gray-800  shadow ">
+      <nav className="">
         <div className=" mx-12 max-w-7xl">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center">
@@ -25,14 +25,7 @@ const Nav = () => {
               </span>
 
               <div className="hidden md:block">
-                <div className="flex items-baseline ml-10 space-x-4">
-                  {/* <Link
-                    className="text-gray-300  hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                    href="/#"
-                  >
-                    PLAY-i CHATGPT DJ
-                  </Link> */}
-                </div>
+                <div className="flex items-baseline ml-10 space-x-4"></div>
               </div>
             </div>
             <div className="block">
@@ -54,34 +47,6 @@ const Nav = () => {
             </div>
           </div>
         </div>
-        {/* <div className="md:hidden">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <Link
-              className="text-gray-300 hover:text-gray-800 dark:hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-              href="/#"
-            >
-              Home
-            </Link>
-            <Link
-              className="text-gray-800 dark:text-white block px-3 py-2 rounded-md text-base font-medium"
-              href="/#"
-            >
-              Gallery
-            </Link>
-            <Link
-              className="text-gray-300 hover:text-gray-800 dark:hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-              href="/#"
-            >
-              Content
-            </Link>
-            <Link
-              className="text-gray-300 hover:text-gray-800 dark:hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-              href="/#"
-            >
-              Contact
-            </Link>
-          </div>
-        </div> */}
       </nav>
     </div>
   );
