@@ -6,7 +6,7 @@ const AiPlaylist = ({ playlistData }) => {
         key={i}
         className="flex flex-col border-b border-gray-200 p-2 w-full hover:shadow-md cursor-pointer"
       >
-        <span className="text-sm text-black capitalize font-semibold pt-1">
+        <span className="text-xs text-black capitalize font-semibold pt-1">
           {i + 1}. {song.title} -{" "}
           <span className="text-xs text-gray-600 uppercase font-semibold">
             {song.artist}
@@ -28,7 +28,7 @@ const AiPlaylist = ({ playlistData }) => {
               <span className="text-xs text-gray-500 uppercase font-bold ">
                 play ai playlist
               </span>
-              <span className="text-md text-red-500 capitalize font-semibold pt-1">
+              <span className="text-sm text-red-500 capitalize font-semibold pt-1">
                 {playlistData.playlist_name}
               </span>
               <span className="text-xs text-gray-900 font-semibold">
