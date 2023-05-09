@@ -16,8 +16,8 @@ const AiPlaylist = ({ playlistData }) => {
     );
   }
   return (
-    <div className=" w-full h-full m-2 px-4">
-      <div className="flex w-full shadow-md rounded-lg overflow-hidden mx-auto border-2 border-gray-100">
+    <div className="w-full h-full m-2 px-4">
+      <div className="flex min-w-3/4 max-w-fit shadow-md rounded-lg overflow-hidden mx-auto border-2 border-gray-100">
         <div className="flex flex-col w-full">
           <div className="flex flex-row items-center p-2 border-b-2 border-gray-100">
             <div className="w-20 h-20 text-5xl flex justify-center items-center">
