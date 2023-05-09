@@ -1,4 +1,5 @@
 import AiPlaylist from "@/components/AiPlaylist";
+import Skeleton from "@/components/Skeleton";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -1076,10 +1077,11 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className=" flex flex-col items-center w-1/2">
+          <div className=" flex flex-col items-center w-1/2 h-full">
             <AiPlaylist
               playlistData={gptResponse ? gptResponse : playlistData}
             />
+            {/* <Skeleton /> */}
           </div>
         </div>
       </div>
